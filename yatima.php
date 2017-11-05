@@ -1,19 +1,13 @@
 <?php
 
-$strAccessToken = "0i2v/wM+ufakKsO4rEPGJlBaRvRoQODlNlfrTyYbhx7dVdr9umhk8d4Ou0y/fQ6NlMEzKG2y98FkIgPOmWzQxXKTxmbdpwJQ786nmaTtMsK0PzEwR/+zmd/ipByxbxH2WOQDmACqgmyfeCwF1M4BFwdB04t89/1O/w1cDnyilFU=
-";
-
+$strAccessToken = "+TkxCe1XWrovYMBRHu1PmlG9frhyaoeORlzBnVTIVxgIOMW541kbLJkiq+XvJjPc6Ay/ekPpm/xAMtJwSwFAuC2+LepcVxezOTjONjWOHjNR4dwSN/yaKoMEnPtO66fife/VTUeIWEaMQXn1Gk/qmwdB04t89/1O/w1cDnyilFU=";
+$strUrl = "https://api.line.me/v2/bot/message/reply";
+$_msg = $arrJson['events'][0]['message']['text'];
 $content = file_get_contents('php://input');
 $arrJson = json_decode($content, true);
-
-$strUrl = "https://api.line.me/v2/bot/message/reply";
-$_userId = $arrJson['events'][0]['source']['userId'];
-$_msg = $arrJson['events'][0]['message']['text'];
-
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-
 
 $filename = 'text.txt';
 if (file_exists($filename)) {
@@ -26,20 +20,11 @@ if (file_exists($filename)) {
   fclose($myfile);
 }
 
-
-
-
-
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "สวัสดี ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
-}else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ฉันยังไม่มีชื่อนะ";
+  $arrPostData['messages'][0]['text'] = "ฉันไม่เข้าใจคำสั่ง";
 }else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
